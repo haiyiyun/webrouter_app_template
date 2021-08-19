@@ -1,4 +1,4 @@
-package main
+package app1
 
 import (
 	"context"
@@ -25,10 +25,10 @@ func init() {
 	webrouter.SetCloser(func() { app1DB.Disconnect(context.TODO()) })
 
 	app1DB.M().InitCollection(schema.Collection1)
-	app1Service := service.NewService(&app1Conf, app1Cache)
+	app1Service := service.NewService(&app1Conf, app1Cache, app1DB)
 
 	//Init Begin
-	app1ServiceService1Service := app1ServiceService1.NewService(app1Service, app1DB)
+	app1ServiceService1Service := app1ServiceService1.NewService(app1Service)
 	//Init End
 
 	//Go Begin

@@ -2,19 +2,18 @@ package collection1
 
 import (
 	"project_name/internal/app/app1/database"
+	"project_name/internal/app/app1/database/schema"
 
-	"github.com/haiyiyun/cache"
 	"github.com/haiyiyun/mongodb"
-	"go.mongodb.org/mongo-driver/bson"
 )
 
 type Model struct {
 	*database.Database `json:"-" bson:"-" map:"-"`
 }
 
-func NewModel(mgo mongodb.Mongoer, col bson.M, cc *cache.Cache) *Model {
+func NewModel(mgo mongodb.Mongoer) *Model {
 	obj := &Model{
-		Database: database.NewDatabase(mgo, col, cc),
+		Database: database.NewDatabase(mgo, schema.Collection1),
 	}
 
 	return obj

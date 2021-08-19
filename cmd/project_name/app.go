@@ -5,6 +5,7 @@ import (
 	"os"
 	"path"
 	"project_name/internal/app"
+	_ "project_name/internal/app/app1"
 	"runtime"
 
 	"github.com/haiyiyun/config"
@@ -13,7 +14,7 @@ import (
 )
 
 func main() {
-	appConfFile := flag.String("config.app", "../config/app1/app.conf", "app config file")
+	appConfFile := flag.String("config.app", "../config/project_name/app.conf", "app config file")
 	appConf := app.Config{}
 	config.Files(*appConfFile).Load(&appConf)
 
@@ -43,6 +44,7 @@ func main() {
 	webrouter.DefaultServer.WriteTimeout = appConf.ServerWriteTimeOut.Duration
 	webrouter.SetBeforeMethodName("Init")
 	webrouter.SetBeforeMethodName("Before")
+
 	if log.LEVEL_DEBUG&log.Levels() == 0 {
 		log.SetFlags(log.LProduction)
 	}

@@ -1,20 +1,20 @@
 package service
 
 import (
-	"project_name/internal/app"
-
 	"github.com/haiyiyun/cache"
+	"github.com/haiyiyun/mongodb"
 )
 
 type Service struct {
-	*app.Service
 	*Config
 	*cache.Cache
+	M mongodb.Mongoer
 }
 
-func NewService(c *Config, cc *cache.Cache) *Service {
+func NewService(c *Config, cc *cache.Cache, m mongodb.Mongoer) *Service {
 	return &Service{
 		Config: c,
 		Cache:  cc,
+		M:      m,
 	}
 }
