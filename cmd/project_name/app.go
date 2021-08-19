@@ -5,8 +5,11 @@ import (
 	"os"
 	"path"
 	"project_name/internal/app"
-	_ "project_name/internal/app/app1"
 	"runtime"
+
+	_ "project_name/internal/app/app1"
+
+	_ "github.com/haiyiyun/webrouter_plugin_template"
 
 	"github.com/haiyiyun/config"
 	"github.com/haiyiyun/log"

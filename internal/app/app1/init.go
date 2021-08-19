@@ -27,14 +27,16 @@ func init() {
 	app1DB.M().InitCollection(schema.Collection1)
 	app1Service := service.NewService(&app1Conf, app1Cache, app1DB)
 
-	//Init Begin
-	app1ServiceService1Service := app1ServiceService1.NewService(app1Service)
-	//Init End
+	if app1Conf.WebRouter {
+		//Init Begin
+		app1ServiceService1Service := app1ServiceService1.NewService(app1Service)
+		//Init End
 
-	//Go Begin
-	//Go End
+		//Go Begin
+		//Go End
 
-	//Register Begin
-	webrouter.Register("/", app1ServiceService1Service)
-	//Register End
+		//Register Begin
+		webrouter.Register(app1Conf.WebRouterRootPath+"", app1ServiceService1Service)
+		//Register End
+	}
 }
