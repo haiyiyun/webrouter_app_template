@@ -5,8 +5,8 @@ import (
 	"flag"
 
 	"project_name/internal/app/app1/database/schema"
-	"project_name/internal/app/app1/service"
-	app1ServiceService1 "project_name/internal/app/app1/service/service1"
+	"project_name/internal/app/app1/service/base"
+	app1Service1 "project_name/internal/app/app1/service/service1"
 
 	"github.com/haiyiyun/cache"
 	"github.com/haiyiyun/config"
@@ -16,27 +16,28 @@ import (
 )
 
 func init() {
-	app1ConfFile := flag.String("config.app1", "../config/app1/app1.conf", "app1 config file")
-	var app1Conf service.Config
-	config.Files(*app1ConfFile).Load(&app1Conf)
+	baseConfFile := flag.String("config.app1.base", "../config/app1/base.conf", "base config file")
+	var baseConf base.Config
+	config.Files(*baseConfFile).Load(&baseConf)
 
-	app1Cache := cache.New(app1Conf.CacheDefaultExpiration.Duration, app1Conf.CacheCleanupInterval.Duration)
-	app1DB := mongodb.NewMongoPool("", app1Conf.MongoDatabaseName, 100, options.Client().ApplyURI(app1Conf.MongoDNS))
-	webrouter.SetCloser(func() { app1DB.Disconnect(context.TODO()) })
+	baseCache := cache.New(baseConf.CacheDefaultExpiration.Duration, baseConf.CacheCleanupInterval.Duration)
+	baseDB := mongodb.NewMongoPool("", baseConf.MongoDatabaseName, 100, options.Client().ApplyURI(baseConf.MongoDNS))
+	webrouter.SetCloser(func() { baseDB.Disconnect(context.TODO()) })
 
-	app1DB.M().InitCollection(schema.Collection1)
-	app1Service := service.NewService(&app1Conf, app1Cache, app1DB)
+	baseDB.M().InitCollection(schema.Collection1)
 
-	if app1Conf.WebRouter {
+	baseService := base.NewService(&baseConf, baseCache, baseDB)
+
+	if baseConf.WebRouter {
 		//Init Begin
-		app1ServiceService1Service := app1ServiceService1.NewService(app1Service)
+		app1Service1Service := app1Service1.NewService(baseService)
 		//Init End
 
 		//Go Begin
 		//Go End
 
 		//Register Begin
-		webrouter.Register(app1Conf.WebRouterRootPath+"", app1ServiceService1Service)
+		webrouter.Register(baseConf.WebRouterRootPath+"", app1Service1Service)
 		//Register End
 	}
 }

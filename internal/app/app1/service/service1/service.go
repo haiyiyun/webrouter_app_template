@@ -1,14 +1,14 @@
 package service1
 
 import (
-	"project_name/internal/app/app1/service"
+	"project_name/internal/app/app1/service/base"
 )
 
 type Service struct {
-	*service.Service
+	*base.Service
 }
 
-func NewService(s *service.Service) *Service {
+func NewService(s *base.Service) *Service {
 	return &Service{
 		Service: s,
 	}

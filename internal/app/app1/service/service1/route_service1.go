@@ -5,6 +5,6 @@ import (
 )
 
 func (self *Service) Route_GET_Service1(rw http.ResponseWriter, req *http.Request) {
-	rw.Write([]byte("service1"))
-
+	self.SomeFunc(rw)
+	rw.Write([]byte("________service1"))
 }
