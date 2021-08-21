@@ -9,7 +9,8 @@ import (
 
 	_ "project_name/internal/app/app1"
 
-	_ "github.com/haiyiyun/webrouter_plugin_template"
+	_ "github.com/haiyiyun/webrouter_plugin_template/init/manage"
+	_ "github.com/haiyiyun/webrouter_plugin_template/init/serve"
 
 	"github.com/haiyiyun/config"
 	"github.com/haiyiyun/log"

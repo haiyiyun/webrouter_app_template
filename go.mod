@@ -9,6 +9,6 @@ require (
 	github.com/haiyiyun/mongodb v0.0.0-20210818124942-aff41a0c60fa
 	github.com/haiyiyun/utils v0.0.0-20210818125714-2b039f23d40c
 	github.com/haiyiyun/webrouter v0.0.0-20210818130015-911aeee3b7a4
-	github.com/haiyiyun/webrouter_plugin_template v0.0.0-20210819035151-338fea56a458
+	github.com/haiyiyun/webrouter_plugin_template v0.0.0-20210821060933-956669b2394b
 	go.mongodb.org/mongo-driver v1.7.1
 )
