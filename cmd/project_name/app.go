@@ -19,6 +19,7 @@ import (
 
 func main() {
 	appConfFile := flag.String("config.app", "../config/project_name/app.conf", "app config file")
+	flag.Parse()
 	appConf := app.Config{}
 	config.Files(*appConfFile).Load(&appConf)
 
