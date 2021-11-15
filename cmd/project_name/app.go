@@ -4,13 +4,9 @@ import (
 	"flag"
 	"os"
 	"path"
-	"project_name/internal/app"
 	"runtime"
 
-	_ "project_name/internal/app/app1"
-
-	_ "github.com/haiyiyun/webrouter_plugin_template/init/manage"
-	_ "github.com/haiyiyun/webrouter_plugin_template/init/serve"
+	"project_name/internal/app"
 
 	"github.com/haiyiyun/config"
 	"github.com/haiyiyun/log"
