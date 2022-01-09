@@ -20,15 +20,15 @@ func init() {
 	var baseConf base.Config
 	config.Files(*baseConfFile).Load(&baseConf)
 
-	baseCache := cache.New(baseConf.CacheDefaultExpiration.Duration, baseConf.CacheCleanupInterval.Duration)
-	baseDB := mongodb.NewMongoPool("", baseConf.MongoDatabaseName, 100, options.Client().ApplyURI(baseConf.MongoDNS))
-	webrouter.SetCloser(func() { baseDB.Disconnect(context.TODO()) })
-
-	baseDB.M().InitCollection(schema.Collection1)
-
-	baseService := base.NewService(&baseConf, baseCache, baseDB)
-
 	if baseConf.WebRouter {
+		baseCache := cache.New(baseConf.CacheDefaultExpiration.Duration, baseConf.CacheCleanupInterval.Duration)
+		baseDB := mongodb.NewMongoPool("", baseConf.MongoDatabaseName, 100, options.Client().ApplyURI(baseConf.MongoDNS))
+		webrouter.SetCloser(func() { baseDB.Disconnect(context.TODO()) })
+
+		baseDB.M().InitCollection(schema.Collection1)
+
+		baseService := base.NewService(&baseConf, baseCache, baseDB)
+
 		//Init Begin
 		app1Service1Service := app1Service1.NewService(baseService)
 		//Init End

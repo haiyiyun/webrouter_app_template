@@ -8,7 +8,7 @@ require (
 	github.com/haiyiyun/log v0.0.0-20211115100502-be01af77681c
 	github.com/haiyiyun/mongodb v0.0.0-20220108162216-33ee0dca6d1c
 	github.com/haiyiyun/webrouter v0.0.0-20211125101311-e49551c30619
-	github.com/haiyiyun/webrouter_plugin_template v0.0.0-20220108222706-714e160d9068
+	github.com/haiyiyun/webrouter_plugin_template v0.0.0-20220109001332-e1831976ea57
 	go.mongodb.org/mongo-driver v1.8.2
 )
 

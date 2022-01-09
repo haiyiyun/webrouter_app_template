@@ -1,7 +1,7 @@
 PWD=`pwd`
 BIN=$(PWD)/bin
 GO_DEBUG=",debug"
-GO_PORT_PROJECT_NAME="10090"
+GO_PORT_PROJECT_NAME="15888"
 
 #==========================================
 install_project_name:
