@@ -1,11 +1,18 @@
 PWD=`pwd`
 BIN=$(PWD)/bin
+MODE="debug"
 GO_DEBUG=",debug"
 GO_PORT_PROJECT_NAME="15888"
 
+
 #==========================================
 install_project_name:
+ifeq ($(MODE), "debug")
 	GOBIN=$(BIN) go install ./cmd/project_name/...
+else
+	GOBIN=$(BIN) go install -ldflags '-s -w' -gcflags="all=-trimpath=$(PWD)" -asmflags="all=-trimpath=$(PWD)" ./cmd/project_name/...
+	cd $(BIN) && upx -9 project_name
+endif
 
 run_project_name:
 ifeq (bin/pid.project_name, $(wildcard bin/pid.project_name))
