@@ -3,6 +3,7 @@ package app1
 import (
 	"context"
 	"flag"
+	"os"
 
 	"project_name/internal/app/app1/database/schema"
 	"project_name/internal/app/app1/service/base"
@@ -21,6 +22,9 @@ func init() {
 	config.Files(*baseConfFile).Load(&baseConf)
 
 	if baseConf.WebRouter {
+		os.Setenv("HYY_CACHE_TYPE", baseConf.CacheType)
+		os.Setenv("HYY_CACHE_URL", baseConf.CacheUrl)
+
 		baseCache := cache.New(baseConf.CacheDefaultExpiration.Duration, baseConf.CacheCleanupInterval.Duration)
 		baseDB := mongodb.NewMongoPool("", baseConf.MongoDatabaseName, 100, options.Client().ApplyURI(baseConf.MongoDNS))
 		webrouter.SetCloser(func() { baseDB.Disconnect(context.TODO()) })
